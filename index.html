@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DREAM TRADE RESEARCH PRIVATE LIMITED | Immersive Game Development Pioneers</title>
+    <meta name="description" content="DREAM TRADE RESEARCH PRIVATE LIMITED, based in the UK, specialises in high-quality game development, virtual reality technology, and interactive entertainment experiences.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- Global Variables & Reset --- */
+        :root {
+            --bg-color: #0b0c15;
+            --bg-secondary: #151621;
+            --primary: #6c5ce7;
+            --accent: #00cec9;
+            --text-main: #ffffff;
+            --text-gray: #a4b0be;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        /* --- Common Components --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--text-main), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* --- 1. Navigation Bar --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: rgba(11, 12, 21, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- 2. Hero Section --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: url('https://picsum.photos/1920/1080?grayscale&blur=2') no-repeat center center/cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(11,12,21,0.9), rgba(11,12,21,0.6));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero h1 span {
+            display: block;
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- 3. Partners/Tech Stack Marquee --- */
+        .marquee {
+            background: var(--bg-secondary);
+            padding: 30px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+        
+        .marquee-content span {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-gray);
+            margin: 0 40px;
+            opacity: 0.5;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- 4. About Section --- */
+        .about-section {
+            background: var(--bg-color);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .about-img img { width: 100%; display: block; transition: var(--transition); }
+        .about-img:hover img { transform: scale(1.05); }
+
+        /* --- 5. Key Statistics --- */
+        .stats {
+            background: linear-gradient(rgba(11,12,21,0.8), rgba(11,12,21,0.8)), url('https://picsum.photos/seed/tech/1600/600') fixed center/cover;
+            padding: 80px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .stat-item p { color: #fff; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+
+        /* --- 6. Core Services (Grid Card) --- */
+        .services { background: var(--bg-secondary); }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 15px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.08);
+            border-color: var(--primary);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .service-card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* --- 7. Development Process --- */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--border);
+            z-index: 0;
+        }
+        .step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: var(--bg-color);
+            padding: 0 10px;
+            width: 20%;
+        }
+        .step-num {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+        .step h4 { margin-bottom: 10px; }
+        .step p { font-size: 0.85rem; color: var(--text-gray); }
+
+        /* --- 8. Featured Project Showcase 1 --- */
+        .project-featured {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 0;
+            margin-bottom: 100px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .project-img {
+            height: 400px;
+            overflow: hidden;
+        }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        .project-info {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .project-tag {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        /* --- 9. Featured Project Showcase 2 (Reversed) --- */
+        .project-reversed {
+            grid-template-columns: 0.8fr 1.2fr;
+        }
+        .project-reversed .project-info { order: -1; }
+
+        /* --- 10. Game Gallery (Masonry Style) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 15px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: var(--transition);
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .g-1 { grid-column: 1 / 3; } /* Large Item */
+        .g-2 { grid-column: 3 / 4; }
+        .g-3 { grid-column: 4 / 5; }
+        .g-4 { grid-column: 1 / 2; }
+        .g-5 { grid-column: 2 / 4; } /* Large Item */
+        .g-6 { grid-column: 4 / 5; }
+
+        /* --- 11. Tech Stack (Tab Style) --- */
+        .tech-stack { text-align: center; }
+        .tech-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .tech-icon {
+            text-align: center;
+            width: 100px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        .tech-icon:hover { background: var(--glass); transform: translateY(-5px); }
+        .tech-icon i { font-size: 2rem; color: #fff; margin-bottom: 10px; }
+        .tech-icon span { display: block; font-size: 0.8rem; color: var(--text-gray); }
+
+        /* --- 12. Team Introduction --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .team-member {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .member-img {
+            height: 300px;
+            overflow: hidden;
+        }
+        .member-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: var(--transition); }
+        .team-member:hover .member-img img { filter: grayscale(0%); }
+        .member-info { padding: 20px; }
+        .member-info h4 { color: #fff; margin-bottom: 5px; }
+        .member-info span { color: var(--accent); font-size: 0.9rem; }
+
+        /* --- 13. Client Testimonials --- */
+        .testimonials { background: var(--bg-secondary); }
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .review-card {
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .review-card .stars { color: #f1c40f; margin-bottom: 15px; }
+        .review-card p { font-style: italic; color: var(--text-gray); margin-bottom: 20px; }
+        .reviewer { display: flex; align-items: center; gap: 15px; }
+        .reviewer img { width: 50px; height: 50px; border-radius: 50%; }
+
+        /* --- 14. Careers (Banner) --- */
+        .careers-banner {
+            background: linear-gradient(90deg, #6c5ce7, #0984e3);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            color: #fff;
+        }
+        .careers-banner h3 { font-size: 2rem; margin-bottom: 15px; }
+        
+        /* --- 15. FAQ --- */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .faq-answer {
+            color: var(--text-gray);
+            margin-top: 15px;
+            display: none; /* JS Toggle */
+        }
+        .faq-item.active .faq-answer { display: block; animation: fadeIn 0.5s; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- 16. News & Updates --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .news-item { background: var(--bg-secondary); border-radius: 10px; overflow: hidden; }
+        .news-content { padding: 20px; }
+        .news-date { font-size: 0.8rem; color: var(--accent); margin-bottom: 10px; display: block; }
+        .news-title { font-size: 1.1rem; margin-bottom: 10px; display: block; font-weight: bold; }
+
+        /* --- 17. Newsletter Subscription --- */
+        .newsletter { text-align: center; }
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* --- 18. Contact Us --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-info h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .contact-detail { margin-bottom: 30px; }
+        .contact-detail p { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; color: var(--text-gray); }
+        .contact-detail i { color: var(--primary); font-size: 1.2rem; }
+        
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: #fff;
+            border-radius: 5px;
+        }
+        .contact-form textarea { height: 150px; resize: none; }
+
+        /* --- 19. Map --- */
+        .map-container {
+            height: 400px;
+            width: 100%;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .map-placeholder {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            background: url('https://picsum.photos/seed/map/1200/400') center/cover;
+            filter: grayscale(80%);
+        }
+
+        /* --- 20. Footer --- */
+        footer {
+            background: #000;
+            padding: 60px 0 20px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-brand p { color: var(--text-gray); margin-top: 20px; font-size: 0.9rem; }
+        .footer-col h4 { color: #fff; margin-bottom: 20px; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--accent); }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* 簡化處理，實際項目需添加漢堡菜單 */
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid, .stats-grid, .project-featured, .gallery-grid, .review-grid, .news-grid, .contact-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-img { height: 250px; }
+            .process-steps { flex-direction: column; gap: 30px; }
+            .process-steps::before { width: 2px; height: 100%; left: 25px; top: 0; }
+            .step { width: 100%; text-align: left; padding-left: 70px; }
+            .step-num { position: absolute; left: 0; margin: 0; }
+            .g-1, .g-2, .g-3, .g-4, .g-5, .g-6 { grid-column: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-gamepad"></i>
+                DREAM TRADE RESEARCH
+            </a>
+            <nav class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#services">Core Services</a>
+                <a href="#projects">Portfolio</a>
+                <a href="#team">Our Team</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#contact" class="btn btn-primary">Start a Project</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1><span>DREAM TRADE RESEARCH PRIVATE LIMITED</span></h1>
+            <h1>Building Virtual Reality's<br>Boundless Frontiers</h1>
+            <p>We don't just write code—we craft dreams from the heart of the UK. Specialising in next-generation game development and immersive digital experiences.</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="#projects" class="btn btn-primary">Explore Our Work</a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>UNITY 3D</span>
+            <span>UNREAL ENGINE 5</span>
+            <span>C# / C++</span>
+            <span>VULKAN API</span>
+            <span>BLENDER</span>
+            <span>DIRECTX 12</span>
+            <span>AI BEHAVIOR TREES</span>
+            <span>PHYSX</span>
+            <span>UNITY 3D</span>
+            <span>UNREAL ENGINE 5</span>
+            <span>C# / C++</span> </div>
+    </div>
+
+    <section id="about" class="section-padding about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text" data-aos="fade-right">
+                    <div class="section-title" style="text-align: left; margin-bottom: 30px;">
+                        <h2>Based in the UK, Looking to the Future</h2>
+                    </div>
+                    <p style="color: var(--accent); margin-bottom: 20px; font-weight: bold;">Reimagining Reality Through Digital Innovation</p>
+                    <p style="margin-bottom: 20px; color: var(--text-gray);">
+                        Founded in the United Kingdom, DREAM TRADE RESEARCH PRIVATE LIMITED is nestled in a vibrant and creative city. We are a passionate team of technical geeks and artists driven by our love for gaming.
+                    </p>
+                    <p style="margin-bottom: 30px; color: var(--text-gray);">
+                        Here, rich British heritage collides with cutting-edge cyber technology. We're dedicated to crafting breathtaking audiovisual experiences for players worldwide using the latest graphics technology and game engines. Whether it's indie game development or technical support for large-scale commercial projects, we maintain our 'craftsmanship at our core' philosophy.
+                    </p>
+                    <ul style="margin-bottom: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <li><i class="fa-solid fa-check" style="color:var(--accent)"></i> Proprietary Engine Tools</li>
+                        <li><i class="fa-solid fa-check" style="color:var(--accent)"></i> Cross-Platform Porting</li>
+                        <li><i class="fa-solid fa-check" style="color:var(--accent)"></i> AAA Art Standards</li>
+                        <li><i class="fa-solid fa-check" style="color:var(--accent)"></i> 24/7 Operations Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                </div>
+                <div class="about-img" data-aos="fade-left">
+                    <img src="https://picsum.photos/seed/office/800/600" alt="Company Office Environment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
+                    <h3 class="counter" data-target="50">0</h3>
+                    <p>Live Projects</p>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                    <h3 class="counter" data-target="120">0</h3>
+                    <p>Industry Partners</p>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                    <h3 class="counter" data-target="8">0</h3>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                    <h3 class="counter" data-target="200">0</h3>
+                    <p>Million+ Players Reached</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Recognition Section -->
+    <section class="section-padding" style="background: var(--bg-color);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Awards & Recognition</h2>
+                <p>Celebrating our achievements in the UK gaming industry</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-trophy" style="font-size: 3rem; color: #f1c40f; margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">UK Game Awards 2023</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Best Independent Studio</p>
+                </div>
+                <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-medal" style="font-size: 3rem; color: #e74c3c; margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">BAFTA Games</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Innovation Nominee 2022</p>
+                </div>
+                <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-award" style="font-size: 3rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">Develop:Star Awards</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Rising Star Category</p>
+                </div>
+                <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-certificate" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">TechUK Innovation</h4>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Excellence in VR 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Core Business Areas</h2>
+                <p>From concept design to final launch, we provide full lifecycle game development solutions.</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-mobile-screen-button service-icon"></i>
+                    <h3>Mobile Game Development</h3>
+                    <p>Focused on high-performance game development for iOS and Android platforms, covering casual, RPG, SLG, and multiple genres, with extreme optimisation for package size and runtime efficiency.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-vr-cardboard service-icon"></i>
+                    <h3>VR/AR Interactive Experiences</h3>
+                    <p>Combining UK heritage resources and industrial demands to develop virtual reality applications. Creating immersive metaverse gateways.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-desktop service-icon"></i>
+                    <h3>PC/Console Game Development</h3>
+                    <p>Leveraging the powerful capabilities of the UE5 engine to create stunning independent games, supporting Steam and console platform publishing.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-palette service-icon"></i>
+                    <h3>2D/3D Art Outsourcing</h3>
+                    <p>With a first-rate team of concept artists and 3D modellers, we provide comprehensive art asset production including character design, scene construction, animation, and visual effects.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fa-solid fa-server service-icon"></i>
+                    <h3>Multiplayer & Backend Systems</h3>
+                    <p>Robust server architecture design, real-time multiplayer synchronisation, matchmaking systems, and scalable cloud infrastructure for MMO and competitive games.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fa-solid fa-brain service-icon"></i>
+                    <h3>AI & Procedural Generation</h3>
+                    <p>Advanced AI behaviour trees, machine learning integration, and procedural content generation for dynamic, replayable game experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Standard Development Process</h2>
+            </div>
+            <div class="process-steps" data-aos="fade-up">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h4>Requirements Analysis</h4>
+                    <p>In-depth communication about core gameplay mechanics and monetisation logic.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h4>Prototype Design</h4>
+                    <p>Rapidly produce demos to validate the fun factor of core gameplay.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h4>Art & Development</h4>
+                    <p>Agile development methodology with regular progress and version synchronisation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <h4>Testing & Optimisation</h4>
+                    <p>Professional QA team conducting comprehensive device compatibility testing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">05</div>
+                    <h4>Launch & Operations</h4>
+                    <p>Assisting with publishing across major app stores and ongoing data maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Featured Portfolio</h2>
+            </div>
+            
+            <div class="project-featured" data-aos="fade-right">
+                <div class="project-img">
+                    <img src="https://picsum.photos/seed/cyberpunk/800/600" alt="賽博行動">
+                </div>
+                <div class="project-info">
+                    <span class="project-tag">RPG / Action</span>
+                    <h3>Project: Neon Awakening</h3>
+                    <p style="margin: 20px 0; color: var(--text-gray);">A cyberpunk-styled action RPG mobile game. Players explore the truth in a futuristic urban jungle. Utilising a proprietary rendering pipeline to achieve real-time volumetric lighting effects on mobile devices.</p>
+                    <a href="#" class="btn btn-outline" style="width: fit-content;">View Details</a>
+                </div>
+            </div>
+
+            <div class="project-featured project-reversed" data-aos="fade-left">
+                <div class="project-img">
+                    <img src="https://picsum.photos/seed/fantasy/800/600" alt="Our Project">
+                </div>
+                <div class="project-info">
+                    <span class="project-tag">VR + Heritage Tourism</span>
+                    <h3>Smart Tourism Cloud Walk</h3>
+                    <p style="margin: 20px 0; color: var(--text-gray);">Combining on-site location scouting across the UK with photogrammetry technology, recreating British landscapes at 1:1 scale. Offering visitors an immersive cloud-walking experience that showcases the perfect fusion of technology and cultural heritage.</p>
+                    <a href="#" class="btn btn-outline" style="width: fit-content;">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visual Arts Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item g-1" data-aos="fade-in"><img src="https://picsum.photos/seed/gameart1/600/400" alt="Art"></div>
+                <div class="gallery-item g-2" data-aos="fade-in"><img src="https://picsum.photos/seed/gameart2/300/300" alt="Art"></div>
+                <div class="gallery-item g-3" data-aos="fade-in"><img src="https://picsum.photos/seed/gameart3/300/300" alt="Art"></div>
+                <div class="gallery-item g-4" data-aos="fade-in"><img src="https://picsum.photos/seed/gameart4/300/300" alt="Art"></div>
+                <div class="gallery-item g-5" data-aos="fade-in"><img src="https://picsum.photos/seed/gameart5/600/400" alt="Art"></div>
+                <div class="gallery-item g-6" data-aos="fade-in"><img src="https://picsum.photos/seed/gameart6/300/300" alt="Art"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding tech-stack" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2>Powerful Tools We Use</h2>
+            <div class="tech-icons" data-aos="zoom-in">
+                <div class="tech-icon"><i class="fa-brands fa-unity"></i><span>Unity</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-android"></i><span>Android</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-apple"></i><span>iOS</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-aws"></i><span>Cloud</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Game Genres We Excel In</h2>
+                <p>Diverse expertise across multiple gaming categories</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="padding: 25px; background: var(--glass); border-radius: 10px; text-align: center; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-dragon" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                    <h4>RPG & Adventure</h4>
+                </div>
+                <div style="padding: 25px; background: var(--glass); border-radius: 10px; text-align: center; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fa-solid fa-gun" style="font-size: 2rem; color: var(--accent); margin-bottom: 10px;"></i>
+                    <h4>FPS & Shooter</h4>
+                </div>
+                <div style="padding: 25px; background: var(--glass); border-radius: 10px; text-align: center; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-chess" style="font-size: 2rem; color: #f1c40f; margin-bottom: 10px;"></i>
+                    <h4>Strategy & Puzzle</h4>
+                </div>
+                <div style="padding: 25px; background: var(--glass); border-radius: 10px; text-align: center; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fa-solid fa-car" style="font-size: 2rem; color: #e74c3c; margin-bottom: 10px;"></i>
+                    <h4>Racing & Sports</h4>
+                </div>
+                <div style="padding: 25px; background: var(--glass); border-radius: 10px; text-align: center; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-ghost" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                    <h4>Horror & Survival</h4>
+                </div>
+                <div style="padding: 25px; background: var(--glass); border-radius: 10px; text-align: center; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="350">
+                    <i class="fa-solid fa-people-group" style="font-size: 2rem; color: var(--accent); margin-bottom: 10px;"></i>
+                    <h4>Social & Casual</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Team</h2>
+                <p>A Collective of Passionate Dream Makers</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member" data-aos="flip-left">
+                    <div class="member-img"><img src="https://picsum.photos/seed/person1/400/500" alt="CEO"></div>
+                    <div class="member-info">
+                        <h4>James Wilson</h4>
+                        <span>Founder / Lead Producer</span>
+                    </div>
+                </div>
+                <div class="team-member" data-aos="flip-left" data-aos-delay="100">
+                    <div class="member-img"><img src="https://picsum.photos/seed/person2/400/500" alt="CTO"></div>
+                    <div class="member-info">
+                        <h4>Emma Thompson</h4>
+                        <span>Technical Director</span>
+                    </div>
+                </div>
+                <div class="team-member" data-aos="flip-left" data-aos-delay="200">
+                    <div class="member-img"><img src="https://picsum.photos/seed/person3/400/500" alt="Art"></div>
+                    <div class="member-info">
+                        <h4>Oliver Brown</h4>
+                        <span>Lead Artist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonials">
+        <div class="container">
+            <div class="section-title"><h2>Voices from Clients & Players</h2></div>
+            <div class="review-grid">
+                <div class="review-card" data-aos="fade-up">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Your team's technical expertise is truly impressive. Not only did you deliver the project on time, but you also exceeded our expectations in performance optimisation."</p>
+                    <div class="reviewer">
+                        <img src="https://picsum.photos/seed/user1/100/100" alt="User">
+                        <div><strong>Heritage Tourism Group</strong><span>Project Manager</span></div>
+                    </div>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"The combat mechanics in 'Neon Awakening' are brilliant! As a British indie game, the visual presentation rivals that of major studios."</p>
+                    <div class="reviewer">
+                        <img src="https://picsum.photos/seed/user2/100/100" alt="User">
+                        <div><strong>Experienced Gamer</strong><span>Platform Review</span></div>
+                    </div>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <p>"A highly professional partner. Communication was seamless, and they quickly understood our design vision and brought it to life."</p>
+                    <div class="reviewer">
+                        <img src="https://picsum.photos/seed/user3/100/100" alt="User">
+                        <div><strong>Independent Studio</strong><span>Producer</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="careers-banner" data-aos="zoom-in">
+                <h3>Looking for Our Next Partner</h3>
+                <p style="margin-bottom: 25px;">We're seeking Unity client developers, 3D environment artists, and game systems designers.</p>
+                <a href="mailto:contact@dreamtraderesearch.in" class="btn" style="background:#fff; color:var(--primary);">Join Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-title"><h2>Latest News & Updates</h2></div>
+            <div class="news-grid">
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news1/600/300" style="width:100%" alt="News">
+                    <div class="news-content">
+                        <span class="news-date">15 November 2023</span>
+                        <span class="news-title">Company Awarded "UK High-Tech Enterprise" Status</span>
+                        <a href="#" style="font-size:0.9rem; color:var(--text-gray)">Read More ></a>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news2/600/300" style="width:100%" alt="News">
+                    <div class="news-content">
+                        <span class="news-date">01 October 2023</span>
+                        <span class="news-title">New Title 'Beyond the Clouds' Exhibiting at London Games Festival</span>
+                        <a href="#" style="font-size:0.9rem; color:var(--text-gray)">Read More ></a>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://picsum.photos/seed/news3/600/300" style="width:100%" alt="News">
+                    <div class="news-content">
+                        <span class="news-date">20 September 2023</span>
+                        <span class="news-title">We've Partnered with Local Universities on Industry-Academia Collaboration</span>
+                        <a href="#" style="font-size:0.9rem; color:var(--text-gray)">Read More ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-title"><h2>Frequently Asked Questions</h2></div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Do you accept custom development projects? <i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-answer">Yes, we provide full-process custom development services from concept to launch, including enterprise Gamification applications, VR exhibition halls, and more.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How long does it take to develop a game? <i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-answer">It depends on the scope and type of game. Casual games typically take 1-2 months, while mid-to-heavy RPG projects may require 6 months or more.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How is after-sales maintenance handled? <i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-answer">We provide at least 6 months of free technical maintenance to ensure stable operation after launch, with rapid response to bug fixes.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: var(--bg-color);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Community & Social Impact</h2>
+                <p>Building the future of gaming together</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-graduation-cap" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">Educational Partnerships</h4>
+                    <p style="color: var(--text-gray);">Collaborating with UK universities including Imperial College London and UCL to nurture the next generation of game developers through mentorship programmes and internships.</p>
+                </div>
+                <div style="padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-users" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">Diversity & Inclusion</h4>
+                    <p style="color: var(--text-gray);">Championing diversity in gaming with 50% female leadership and active support for underrepresented communities in tech through workshops and sponsorship.</p>
+                </div>
+                <div style="padding: 30px; background: var(--glass); border-radius: 10px; border: 1px solid var(--border);" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-leaf" style="font-size: 2rem; color: #2ecc71; margin-bottom: 15px;"></i>
+                    <h4 style="margin-bottom: 10px;">Sustainability Commitment</h4>
+                    <p style="color: var(--text-gray);">Carbon-neutral operations since 2022, using renewable energy and implementing green coding practices to minimise environmental impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding newsletter" style="background: linear-gradient(to bottom, var(--bg-color), var(--bg-secondary));">
+        <div class="container">
+            <h2>Subscribe to Our Tech Newsletter</h2>
+            <p style="color:var(--text-gray)">Get the latest game development insights and company updates</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address...">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Start Your Project</h3>
+                    <p style="margin-bottom: 40px; color: var(--text-gray);">Whether you're seeking technical collaboration or have a brilliant game idea, feel free to contact us anytime.</p>
+                    
+                    <div class="contact-detail">
+                        <p><i class="fa-solid fa-location-dot"></i> Flat No 5, 759/66, Datta Apt, Prabhat Road, Deccan Gymkhana, 7186481281</p>
+                        <p><i class="fa-solid fa-envelope"></i> contact@dreamtraderesearch.in</p>
+                        <p><i class="fa-solid fa-phone"></i> </p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="#" style="margin-right:15px; font-size:1.5rem;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="margin-right:15px; font-size:1.5rem;"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" style="margin-right:15px; font-size:1.5rem;"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#" style="font-size:1.5rem;"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" data-aos="fade-left">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Email Address">
+                    <input type="text" placeholder="Phone Number">
+                    <textarea placeholder="Please describe your requirements..."></textarea>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="map-container">
+        <div class="map-placeholder">
+            <h3 style="background: rgba(0,0,0,0.7); padding: 10px 20px;">MAP LOCATION: Flat No 5, 759/66, Datta Apt, Prabhat Road, Deccan Gymkhana, 7186481281</h3>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">DREAM TRADE RESEARCH</a>
+                    <p>DREAM TRADE RESEARCH PRIVATE LIMITED, committed to becoming the UK's most influential game developer and technology service provider.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Help Centre</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 DREAM TRADE RESEARCH PRIVATE LIMITED All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialise AOS Animation Library
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navigation Bar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 0';
+                header.style.background = 'rgba(11, 12, 21, 0.95)';
+            } else {
+                header.style.padding = '20px 0';
+                header.style.background = 'rgba(11, 12, 21, 0.8)';
+            }
+        });
+
+        // Number Counting Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Use Intersection Observer to Trigger Number Animation
+        let options = { threshold: 0.5 };
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+        document.querySelector('.stats').querySelectorAll('.counter').forEach(c => observer.observe(c.parentElement));
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+                
+                // Close Others
+                document.querySelectorAll('.faq-item').forEach(other => {
+                    if (other !== parent) {
+                        other.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
